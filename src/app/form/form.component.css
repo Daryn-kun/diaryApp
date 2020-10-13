@@ -1,0 +1,29 @@
+.form {
+  background-color: #F1ECE7;
+  width: 520px;
+  height: 720px;
+  margin: 50px auto 50px auto;
+}
+
+.innerform {
+  position: relative;
+  background-color: white;
+  width: 460px;
+  height: 660px;
+  margin-left: 6%;
+  top: 4%;
+}
+
+.form-control {
+  border: 0;
+}
+
+#saveButton {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.date {
+  padding: 10px;
+}

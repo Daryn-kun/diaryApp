@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block sidebar" style="background: #515861">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="/diary-edit">
+              New Entry
+            </a>
+          </li>
+          <li class="nav-item border-top">
+            <a class="nav-link" href="/view-all">
+              View All Entries
+            </a>
+        </ul>
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted border-top">
+          <span style="color: white">Recent Entries</span>
+        </h6>
+        <ul class="nav flex-column mb-2" *ngFor="let data of childData.reverse()">
+          <li class="nav-item border-top">
+            <a (click)="openEntry = [data.entryTitle, data.entryDate, data.entryContents]" class="btn lists"
+               style="text-align: left; color: #F1ECE7">
+              <p><b>{{data.entryTitle | naturalType}}</b><br>
+                {{data.entryDate | date: 'EEEE, M/d/yy' | naturalType}}<br>
+                <small>{{data.entryContents | naturalType | slice:0:30}}<small *ngIf="data.entryContents.length > 25">...</small></small>
+              </p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <app-form [item]="openEntry" (dataPass)="eventHandler($event)"></app-form>
+    </main>
+  </div>
+</div>

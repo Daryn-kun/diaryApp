@@ -1,0 +1,24 @@
+.mainDiv{
+  background: linear-gradient(90deg, rgba(0,167,201,1) 0%, rgba(9,9,121,1) 50%, rgba(26,23,94,1) 100%);
+  width: 550px;
+  height: 550px;
+  margin: 50px auto 50px auto;
+}
+.elementsDiv{
+  position: relative;
+  background-color: white;
+  width: 410px;
+  height: 180px;
+  margin-left: 15%;
+  top: 25%;
+}
+.container{
+  height: 80px;
+  position: relative;
+  top: 32%;
+}
+.col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

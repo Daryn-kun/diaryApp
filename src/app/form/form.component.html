@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h4 style="margin-left: 44%">Writing Diary</h4>
+</div>
+<div class="form shadow-lg rounded">
+  <div class="innerform">
+    <div class="titleform">
+      <input *ngIf="item.length == 0; else elseBlock1" type="text" class="form-control" placeholder="Enter Title"
+             name="entryTitle" [(ngModel)]="entryTitle">
+      <ng-template #elseBlock1><input type="text" class="form-control"
+                                      name="entryTitle" [value]="item[0]">
+      </ng-template>
+    </div>
+    <div *ngIf="item.length == 0; else elseBlock2"
+         class="date border-top">{{toDate | date: 'MMM d, y, h:mm:ss a'}}</div>
+    <ng-template #elseBlock2>
+      <div class="date border-top">{{item[1] | date: 'EEEE, M/d/yy'}}</div>
+    </ng-template>
+    <div class="textform border-top">
+      <textarea *ngIf="item.length == 0; else elseBlock3" class="form-control" id="txtform1" rows="20"
+                placeholder="Your entry here"
+                name="entryContent" [(ngModel)]="entryContents"></textarea>
+      <ng-template #elseBlock3><textarea class="form-control" id="txtform2" rows="20"
+                                         name="entryContent" [value]="item[2]"></textarea></ng-template>
+    </div>
+    <button (click)='saveButtonClick()' type="submit" class="btn btn-primary" id="saveButton">Save</button>
+  </div>
+</div>

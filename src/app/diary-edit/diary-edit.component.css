@@ -1,0 +1,6 @@
+.lists{
+  width: 100%;
+}
+.lists:hover{
+  background-color: #c9c9cb;
+}

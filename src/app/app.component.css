@@ -1,0 +1,16 @@
+body, html {
+  height: 100%;
+}
+
+.bg {
+  padding-top: 50px;
+  /* The image used */
+  background-image: url("https://i.ibb.co/W2mNwTf/Abstract-and-surface-brown-wood-texture-for-background.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-size: cover;
+}
