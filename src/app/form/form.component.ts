@@ -1,7 +1,9 @@
 import {
-  Component,
+  AfterContentChecked,
+  AfterContentInit, AfterViewChecked, AfterViewInit,
+  Component, DoCheck,
   EventEmitter,
-  Input,
+  Input, OnDestroy, OnInit,
   Output
 } from '@angular/core';
 import {Notes} from './notes'
@@ -12,7 +14,14 @@ import {Notes} from './notes'
   styleUrls: ['./form.component.css']
 })
 
-export class FormComponent {
+export class FormComponent
+  implements OnInit,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    AfterViewChecked,
+    OnDestroy {
   @Input() item = []
   @Output() dataPass = new EventEmitter<any>();
   entryID: number = 0
@@ -33,5 +42,39 @@ export class FormComponent {
     this.entryID++
   }
 
+  constructor() {
+    console.log("FormComponent:Constructor");
+  }
 
+  ngOnChanges() {
+    console.log("FormComponent:OnChanges");
+  }
+
+  ngOnInit() {
+    console.log("FormComponent:OnInit");
+  }
+
+  ngDoCheck() {
+    console.log("FormComponent:DoCheck");
+  }
+
+  ngAfterContentInit() {
+    console.log("FormComponent:AfterContentInit");
+  }
+
+  ngAfterContentChecked() {
+    console.log("FormComponent:AfterContentChecked");
+  }
+
+  ngAfterViewInit() {
+    console.log("FormComponent:AfterViewInit");
+  }
+
+  ngAfterViewChecked() {
+    console.log("FormComponent:AfterViewChecked");
+  }
+
+  ngOnDestroy() {
+    console.log("FormComponent:OnDestroy");
+  }
 }
