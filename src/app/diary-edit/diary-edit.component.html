@@ -17,7 +17,8 @@
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted border-top">
           <span style="color: white">Recent Entries</span>
         </h6>
-        <ul class="nav flex-column mb-2" *ngFor="let data of childData.reverse()">
+        <button (click)="getEntry()" class="btn btn-info" style="width: 100%; margin-top: 10px; margin-bottom: 10px">List Of Entries</button>
+        <ul class="nav flex-column mb-2" *ngFor="let data of entryOutput.reverse()">
           <li class="nav-item border-top">
             <a (click)="openEntry = [data.entryTitle, data.entryDate, data.entryContents]" class="btn lists"
                style="text-align: left; color: #F1ECE7">
@@ -30,9 +31,8 @@
         </ul>
       </div>
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <app-form [item]="openEntry" (dataPass)="eventHandler($event)"></app-form>
+      <app-form [item]="openEntry"></app-form>
     </main>
   </div>
 </div>

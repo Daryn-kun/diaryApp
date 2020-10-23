@@ -7,6 +7,7 @@ import {
   DoCheck, OnDestroy,
   OnInit
 } from '@angular/core';
+import {SigningService} from "../service/signing.service";
 
 @Component({
   selector: 'app-diary',
@@ -14,6 +15,9 @@ import {
   styleUrls: ['./diary.component.css']
 })
 export class DiaryComponent{
-
-
+  owner: string
+  isUndefined(val): boolean { return typeof val === 'undefined'; }
+   constructor(public loginService: SigningService) {
+    this.owner = this.loginService.firstN
+  }
 }

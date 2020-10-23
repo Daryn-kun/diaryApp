@@ -6,7 +6,8 @@ import {
   Input, OnDestroy, OnInit,
   Output
 } from '@angular/core';
-import {Notes} from './notes'
+import {EntryService} from "../service/entry.service";
+import {Entry} from "../entry";
 
 @Component({
   selector: 'app-form',
@@ -23,33 +24,35 @@ export class FormComponent
     AfterViewChecked,
     OnDestroy {
   @Input() item = []
-  @Output() dataPass = new EventEmitter<any>();
   entryID: number = 0
   entryTitle: string;
   entryDate: number;
   entryContents: string;
   toDate: number = Date.now()
-  entryList: Array<Notes> = [];
+  entryList1: Array<Entry> = [];
+  entryPass: any;
 
   saveButtonClick() {
-    let entryObj = new Notes();
+    // @ts-ignore
+    let entryObj = new Entry()
     entryObj.entryID = this.entryID
     entryObj.entryTitle = this.entryTitle
     entryObj.entryDate = this.toDate
     entryObj.entryContents = this.entryContents
-    this.entryList.push(entryObj);
-    this.dataPass.emit(this.entryList)
+    this.entryList1.push(entryObj)
+    this.entryPass = this.entryList1
+    this.entryService.entryList = this.entryPass;
     this.entryID++
   }
 
-  constructor() {
+  constructor(public entryService: EntryService) {
     console.log("FormComponent:Constructor");
   }
 
   ngOnChanges() {
     console.log("FormComponent:OnChanges");
   }
-
+  dataFromService:any;
   ngOnInit() {
     console.log("FormComponent:OnInit");
   }

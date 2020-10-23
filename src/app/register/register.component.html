@@ -24,6 +24,6 @@
       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password"
              name="passwordCon" [(ngModel)]="passwordCon">
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+    <a routerLink="/home" (click)="saveData()" class="btn btn-lg btn-primary btn-block" type="submit">Create Account</a>
   </form>
 </div>

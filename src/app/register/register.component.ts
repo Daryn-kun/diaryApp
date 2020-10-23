@@ -1,21 +1,29 @@
 import {Component, OnInit} from '@angular/core';
+import {SigningService} from "../service/signing.service";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   firstname = ""
   lastname = ""
   email = ""
   password = ""
   passwordCon = ""
 
-  constructor() {
+  constructor(private registerService: SigningService) {
   }
-
-  ngOnInit(): void {
+  saveData(){
+    if(this.password == this.passwordCon) {
+      this.registerService.firstN = this.firstname
+      this.registerService.firstN = this.firstname
+      this.registerService.emailP = this.email
+      this.registerService.passwordP = this.password
+    }
+    else{
+      console.log("Password doesn't match")
+    }
   }
-
 }

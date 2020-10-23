@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NaturalPipe} from "./custompipe/natural.pipe";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
