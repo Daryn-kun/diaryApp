@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'diary-edit', component: DiaryEditComponent},
   {path: 'form', component: FormComponent},
   {path: 'view-all', component: ViewAllComponent},
+  {path:'', redirectTo: 'home', pathMatch:'full'}
 ];
 
 @NgModule({
