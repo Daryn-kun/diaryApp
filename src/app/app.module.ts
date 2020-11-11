@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {ViewAllComponent} from './view-all/view-all.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NaturalPipe} from "./custompipe/natural.pipe";
+import {AdminModule} from "./admin/admin.module";
 
 
 
@@ -38,7 +39,8 @@ import {NaturalPipe} from "./custompipe/natural.pipe";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
