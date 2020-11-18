@@ -21,6 +21,7 @@ export class RegisterComponent {
       this.registerService.firstN = this.firstname
       this.registerService.emailP = this.email
       this.registerService.passwordP = this.password
+      this.registerService.isUserLoggedIn = true
     }
     else{
       console.log("Password doesn't match")

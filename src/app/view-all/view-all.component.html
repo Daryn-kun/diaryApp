@@ -12,10 +12,11 @@
         <label class="title" style="width: 25%">Date Created</label>
         <label class="title" style="float: right; margin-right: 10%">Delete</label>
       </div>
-      <ul class="list-group">
+      <ul class="list-group" *ngFor="let data of entryOutput.reverse()">
         <li class="list-group-item">
-          <div style="width: 50%"><a><h6>New day</h6></a></div>
-          <div style="width: 30%"><p>Wed. 9/23/2020 at 6:31pm</p></div>
+          <div style="width: 50%"><a><h6>{{data.entryTitle | naturalType}}</h6></a>
+            <p><small>{{data.entryContents | naturalType | slice:0:30}}<small *ngIf="data.entryContents.length > 25">...</small></small></p></div>
+          <div style="width: 30%"><p>{{data.entryDate | date: 'EEEE, M/d/yy' | naturalType}}</p></div>
           <div><a href="#" class="trashButton" style="width: 10%">delete</a></div>
         </li>
       </ul>

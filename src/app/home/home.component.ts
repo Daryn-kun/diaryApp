@@ -9,14 +9,10 @@ import {SigningService} from "../service/signing.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  reg: boolean = true
+  reg: boolean
   constructor(public loginService: SigningService) {
     console.log(this.loginService.emailL)
     console.log(this.loginService.passwordL)
-    if (typeof loginService.emailR === 'undefined' && typeof loginService.emailL === 'undefined'){
-      this.reg = false
-    } else {
-      this.reg = true
-    }
+    this.reg = loginService.isUserLoggedIn
   }
 }

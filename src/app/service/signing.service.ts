@@ -11,8 +11,15 @@ export class SigningService {
   public lastName: string;
   public emailR: string;
   public passwordR: string;
+  public reg = false;
 
   constructor(private loggingService: LoggingService) { }
+  get isUserLoggedIn(): boolean{
+    return this.reg;
+  }
+  set isUserLoggedIn(val){
+    this.reg = val;
+  }
   // Login getter and setter
   get emailL():string{
     this.loggingService.log('The logined Email: ' + this.emailLogin);

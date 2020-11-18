@@ -19,6 +19,7 @@ export class LoginComponent {
   saveData(){
     this.loginService.emailL = this.email
     this.loginService.passwordL = this.password
+    this.loginService.isUserLoggedIn = true
   }
 
 }

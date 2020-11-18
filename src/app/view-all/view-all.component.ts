@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {EntryService} from "../service/entry.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-view-all',
@@ -6,8 +8,11 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./view-all.component.css']
 })
 export class ViewAllComponent implements OnInit {
-
-  ngOnInit(): void {
+  entryOutput = []
+  constructor(private entryService: EntryService, private activateRoute: ActivatedRoute) {
+  }
+  ngOnInit(){
+    this.entryOutput = this.activateRoute.snapshot.data['data'];
   }
 
 }

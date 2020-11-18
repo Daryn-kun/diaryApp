@@ -4,6 +4,7 @@ import {
   Component, DoCheck, EventEmitter, OnDestroy, OnInit, Output
 } from '@angular/core';
 import {EntryService} from "../service/entry.service";
+import {CanComponentLeave} from "../guards/unsaved-changes-guard.service";
 
 @Component({
   selector: 'app-diary-edit',
@@ -12,7 +13,7 @@ import {EntryService} from "../service/entry.service";
 })
 export class DiaryEditComponent
   implements OnInit, DoCheck,
-    AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+    AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, CanComponentLeave {
   openEntry = []
   entryOutput = []
 
@@ -22,6 +23,13 @@ export class DiaryEditComponent
   }
   getEntry(){
     this.entryOutput = this.entryService.entryList
+  }
+  unSaved: boolean = true;
+  canLeave(): boolean{
+    if (this.unSaved){
+      return window.confirm('There are unsaved changes! Are you sure?');
+    }
+    return true;
   }
   ngOnChanges() {
     console.log("DiaryEditComponent:OnChanges");
