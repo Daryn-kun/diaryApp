@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import {LoggingService} from "./logging.service";
+import {Users} from "../users";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SigningService {
-  public emailLogin:string;
-  public passwordLogin:string;
-  public firstName: string;
-  public lastName: string;
-  public emailR: string;
-  public passwordR: string;
+  public globalID: number;
   public reg = false;
+  // @ts-ignore
+  registeredUsers = [
+
+  ];
 
   constructor(private loggingService: LoggingService) { }
   get isUserLoggedIn(): boolean{
@@ -20,46 +20,38 @@ export class SigningService {
   set isUserLoggedIn(val){
     this.reg = val;
   }
-  // Login getter and setter
-  get emailL():string{
-    this.loggingService.log('The logined Email: ' + this.emailLogin);
-    return this.emailLogin;
-  }
-  set emailL(val: string){
-    this.emailLogin = val;
-  }
-  get passwordL():string{
-    return this.passwordLogin;
-  }
-  set passwordL(val:string){
-    this.passwordLogin=val;
-  }
   // Register getter and setter
-  get firstN():string{
-    this.loggingService.log('The registered First Name: ' + this.firstName);
-    return this.firstName;
+  get globalSavedId():number{
+    this.loggingService.log('The registered id: ' + this.globalID);
+    return this.globalID;
   }
-  set firstN(val: string){
-    this.firstName = val;
+  set globalSavedId(val: number){
+    this.globalID = val;
   }
-  get lastN():string{
-    this.loggingService.log('The registered Last Name: ' + this.lastName);
-    return this.lastName;
+
+  get usersList(): string[]{
+    this.loggingService.log('List of users' + this.registeredUsers);
+    // @ts-ignore
+    return this.registeredUsers;
   }
-  set lastN(val: string){
-    this.lastName = val;
+  set usersList(val: string[]){
+    // @ts-ignore
+    this.registeredUsers = val;
   }
-  get emailP():string{
-    this.loggingService.log('The registered Email: ' + this.emailR);
-    return this.emailR;
+  getUser(email: string) {
+    return this.registeredUsers.find(x => x.email === email);
   }
-  set emailP(val: string){
-    this.emailR = val;
+  getUserByID(id: number) {
+    return this.registeredUsers.find(x => x.userID === id);
   }
-  get passwordP():string{
-    return this.passwordR;
-  }
-  set passwordP(val:string){
-    this.passwordR=val;
-  }
+  removeUser(deleteId: number): void
+  {
+    for (let users of this.registeredUsers) {
+      if (users.userID == deleteId) {
+        this.registeredUsers.splice(this.registeredUsers.indexOf(users), 1);
+        break;
+      }
+    }
+    console.log(this.registeredUsers);
+  };
 }

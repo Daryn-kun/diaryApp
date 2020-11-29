@@ -1,6 +1,6 @@
-<div class="from shadow-lg rounded mainDiv">
-  <div class="rounded elementsDiv" align="center">
-    <h3 *ngIf="isUndefined(owner); else elseBlock" style="position: relative; top: 20%">Someone's Diary</h3>
+<div class="from shadow-lg mainDiv">
+  <div class="elementsDiv" align="center">
+    <h3 *ngIf="owner === undefined; else elseBlock" style="position: relative; top: 20%">Someone's Diary</h3>
     <ng-template #elseBlock><h3 style="position: relative; top: 20%">{{owner}}'s Diary</h3></ng-template>
     <div class="container">
       <div class="row border-top" style="height:80px">
@@ -11,7 +11,7 @@
           Lock diary
         </div>
         <div class="col order-1" align="center">
-          <a href="/view-all">View entries</a>
+          <a [routerLink]="['/view-all']">View entries</a>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
-  DoCheck, OnDestroy,
+  DoCheck, Input, OnDestroy,
   OnInit
 } from '@angular/core';
 import {SigningService} from "../service/signing.service";
@@ -14,10 +14,12 @@ import {SigningService} from "../service/signing.service";
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.css']
 })
-export class DiaryComponent{
+export class DiaryComponent implements OnInit{
+  @Input() userFromParent: any
   owner: string
-  isUndefined(val): boolean { return typeof val === 'undefined'; }
-   constructor(public loginService: SigningService) {
-    this.owner = this.loginService.firstN
+
+  ngOnInit(): void {
+    this.owner = this.userFromParent.firstName
   }
+
 }

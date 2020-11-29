@@ -3,3 +3,13 @@
   margin: auto;
   margin-top: 50px;
 }
+.diary-image-div{
+
+  margin-top: 50px;
+  max-width: 600px;
+  max-height: 600px;
+}
+.diary-image{
+  border-radius: 25px;
+}
+

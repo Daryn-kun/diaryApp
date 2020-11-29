@@ -10,16 +10,22 @@ import {AdminComponent} from "./admin/admin.component";
 import {UserGuardService} from "./guards/user-guard.service";
 import {UnsavedChangesGuardService} from "./guards/unsaved-changes-guard.service";
 import {ResolveGuardService} from "./guards/resolve-guard.service";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 
 const routes: Routes = [
+  {path: 'home/:id', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'nav', component: NavbarComponent},
   {
     path: 'diary-edit', component: DiaryEditComponent,
     canActivate: [UserGuardService],
     canDeactivate: [UnsavedChangesGuardService]
+  },
+  {
+    path: 'diary-edit/:id', component: DiaryEditComponent
   },
   {path: 'form', component: FormComponent},
   {

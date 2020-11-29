@@ -1,1 +1,25 @@
-<p>admin works!</p>
+<div style="height: 100%">
+  <div class="centered">
+    <div class="header">
+      <div class="headerComp"><h3>Someone's Diary</h3></div>
+      <div class="headerComp" style="float: right; margin-right: 20px"><a [routerLink]="['']"
+                                                                          class="badge badge-primary">Add New User</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="firstList">
+        <label class="title" style="width: 50%">User</label>
+        <label class="title" style="width: 25%">Email</label>
+        <label class="title" style="float: right; margin-right: 10%">Delete</label>
+      </div>
+      <ul class="list-group" *ngFor="let data of entryOutput.reverse()">
+        <li class="list-group-item">
+          <div style="width: 50%"><a><h6>{{data.firstName}} {{data.lastName}}</h6></a>
+          </div>
+          <div style="width: 30%"><p>{{data.email}}</p></div>
+          <div><a (click)="loginService.removeUser(data.userID)" class="trashButton" style="width: 10%">delete</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import {EntryService} from "../service/entry.service";
 import {Entry} from "../entry";
-import {CanComponentLeave} from "../guards/unsaved-changes-guard.service";
 
 @Component({
   selector: 'app-form',
@@ -24,7 +23,8 @@ export class FormComponent
     AfterViewInit,
     AfterViewChecked,
     OnDestroy{
-  @Input() item = []
+  @Input() item: any
+
   entryID: number = 0
   entryTitle: string;
   entryDate: number;
@@ -33,7 +33,6 @@ export class FormComponent
   entryList1: Array<Entry> = [];
   entryPass: any;
   unSaved: boolean = true;
-
 
   saveButtonClick() {
     // @ts-ignore
@@ -57,6 +56,9 @@ export class FormComponent
   }
   dataFromService:any;
   ngOnInit() {
+    if (typeof this.item === 'undefined') {
+      console.log(name + ' is undefined');
+    }
     console.log("FormComponent:OnInit");
   }
 

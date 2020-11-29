@@ -1,7 +1,8 @@
 import {
-  Component
+  Component, OnInit
 } from '@angular/core';
 import {SigningService} from "../service/signing.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -10,16 +11,30 @@ import {SigningService} from "../service/signing.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent{
   email = ""
   password = ""
-  constructor(public loginService: SigningService) {
+  logEmail = true;
+  logPass = true;
+  user: any;
+
+  constructor(public loginService: SigningService, private router : Router, private route: ActivatedRoute) {
 
   }
-  saveData(){
-    this.loginService.emailL = this.email
-    this.loginService.passwordL = this.password
-    this.loginService.isUserLoggedIn = true
+  onSubmit(value: any) {
+    this.user = this.loginService.getUser(this.email)
+    if (this.user !== undefined){
+      if (this.user.password == this.password){
+        console.log(value)
+        this.loginService.isUserLoggedIn = true
+        this.router.navigate(['/home', this.user.userID])
+        this.loginService.globalSavedId = this.user.userID
+        console.log("Passed id: "+this.loginService.globalSavedId)
+      } else {
+        this.logPass=false
+      }
+    } else{
+      this.logEmail=false
+    }
   }
-
 }

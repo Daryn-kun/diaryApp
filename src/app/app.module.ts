@@ -18,8 +18,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NaturalPipe} from "./custompipe/natural.pipe";
 import {AdminModule} from "./admin/admin.module";
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +41,9 @@ import {AdminModule} from "./admin/admin.module";
     AdminModule
   ],
   providers: [],
+  exports: [
+    NaturalPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

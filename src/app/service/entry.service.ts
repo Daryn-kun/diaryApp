@@ -15,4 +15,17 @@ export class EntryService {
   set entryList(val: string[]){
     this.entryListService = val;
   }
+  getEntry(id: number) {
+    return this.entryListService.find(x => x.entryID === id);
+  }
+  removeEntry(deleteId: number): void
+  {
+    for (let entries of this.entryListService) {
+      if (entries.entryID == deleteId) {
+        this.entryListService.splice(this.entryListService.indexOf(entries), 1);
+        break;
+      }
+    }
+    console.log(this.entryListService);
+  };
 }

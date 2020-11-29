@@ -1,4 +1,5 @@
+<app-navbar *ngIf="reg"></app-navbar>
 <div class="centered">
   <app-getstarted *ngIf="!reg"></app-getstarted>
-  <app-diary *ngIf="reg"></app-diary>
+  <app-diary *ngIf="reg" [userFromParent]="user"></app-diary>
 </div>

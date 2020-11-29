@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import {EntryService} from "../service/entry.service";
 import {CanComponentLeave} from "../guards/unsaved-changes-guard.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-diary-edit',
@@ -14,10 +15,10 @@ import {CanComponentLeave} from "../guards/unsaved-changes-guard.service";
 export class DiaryEditComponent
   implements OnInit, DoCheck,
     AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, CanComponentLeave {
-  openEntry = []
+  openEntry: any
   entryOutput = []
 
-  constructor(public entryService: EntryService) {
+  constructor(public entryService: EntryService, private route: ActivatedRoute) {
     console.log("Diary List" + this.entryService.entryList)
     console.log("DiaryEditComponent:Constructor");
   }
@@ -36,6 +37,9 @@ export class DiaryEditComponent
   }
 
   ngOnInit() {
+    // @ts-ignore
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.openEntry = this.entryService.getEntry(id)
     console.log("DiaryEditComponent:OnInit");
   }
 
@@ -61,5 +65,10 @@ export class DiaryEditComponent
 
   ngOnDestroy() {
     console.log("DiaryEditComponent:OnDestroy");
+  }
+
+  showEntry(id: number) {
+    this.openEntry = this.entryService.getEntry(id)
+    console.log(this.openEntry)
   }
 }

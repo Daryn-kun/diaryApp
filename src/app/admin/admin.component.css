@@ -1,0 +1,50 @@
+.centered {
+  height: 1000px;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.container {
+  width: 750px;
+}
+
+.firstList {
+  border-bottom: 1px solid #e74c3c;
+  position: relative;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+  padding: 20px;
+}
+
+.headerComp {
+  display: inline-block;
+}
+
+.badge {
+  padding: 15px;
+}
+
+.title {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.trashButton {
+  color: red;
+  float: right;
+}
+
+.list-group {
+  display: block;
+}
+
+.list-group-item {
+  display: flex;
+
+}

@@ -1,8 +1,9 @@
+<app-navbar></app-navbar>
 <div style="height: 100%">
   <div class="centered">
     <div class="header">
       <div class="headerComp"><h3>Someone's Diary</h3></div>
-      <div class="headerComp" style="float: right; margin-right: 20px"><a href="/diary-edit"
+      <div class="headerComp" style="float: right; margin-right: 20px"><a [routerLink]="['/diary-edit']"
                                                                           class="badge badge-primary">New Entry</a>
       </div>
     </div>
@@ -14,10 +15,10 @@
       </div>
       <ul class="list-group" *ngFor="let data of entryOutput.reverse()">
         <li class="list-group-item">
-          <div style="width: 50%"><a><h6>{{data.entryTitle | naturalType}}</h6></a>
+          <div style="width: 50%"><a (click)="onSelect(data)"><h6>{{data.entryTitle | naturalType}}</h6></a>
             <p><small>{{data.entryContents | naturalType | slice:0:30}}<small *ngIf="data.entryContents.length > 25">...</small></small></p></div>
           <div style="width: 30%"><p>{{data.entryDate | date: 'EEEE, M/d/yy' | naturalType}}</p></div>
-          <div><a href="#" class="trashButton" style="width: 10%">delete</a></div>
+          <div><a (click)="entryService.removeEntry(data.entryID)" class="trashButton" style="width: 10%">delete</a></div>
         </li>
       </ul>
     </div>
