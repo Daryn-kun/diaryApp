@@ -17,6 +17,8 @@ import {ViewAllComponent} from './view-all/view-all.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NaturalPipe} from "./custompipe/natural.pipe";
 import {AdminModule} from "./admin/admin.module";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {SigningService} from "./service/signing.service";
 
 @NgModule({
   declarations: [
@@ -38,9 +40,10 @@ import {AdminModule} from "./admin/admin.module";
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    AdminModule
+    AdminModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SigningService],
   exports: [
     NaturalPipe
   ],

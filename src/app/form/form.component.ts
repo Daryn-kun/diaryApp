@@ -47,6 +47,10 @@ export class FormComponent
     this.entryID++
     this.unSaved = false;
   }
+  clearHandler() {
+    this.entryTitle = '';
+    this.entryContents = '';
+  }
   constructor(public entryService: EntryService) {
     console.log("FormComponent:Constructor");
   }
@@ -85,4 +89,6 @@ export class FormComponent
   ngOnDestroy() {
     console.log("FormComponent:OnDestroy");
   }
+
+
 }

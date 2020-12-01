@@ -25,7 +25,8 @@ const routes: Routes = [
     canDeactivate: [UnsavedChangesGuardService]
   },
   {
-    path: 'diary-edit/:id', component: DiaryEditComponent
+    path: 'diary-edit/:id', component: DiaryEditComponent,
+    canActivate: [UserGuardService]
   },
   {path: 'form', component: FormComponent},
   {

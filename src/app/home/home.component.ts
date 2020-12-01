@@ -11,13 +11,20 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HomeComponent implements OnInit{
   reg: boolean
-  user: any
+  id = this.route.snapshot.params['id'];
+  user: any = {};
+  owner: string
   constructor(public loginService: SigningService, private route: ActivatedRoute) {
-    this.reg = loginService.isUserLoggedIn
+
   }
 
-  ngOnInit(): void {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.user = this.loginService.getUserByID(id)
+  ngOnInit(){
+    this.reg = this.loginService.isUserLoggedIn
+    if (this.reg) {
+      this.loginService.getUserByID(this.id.toString())
+        .subscribe(data => this.user = data);
+      this.owner = this.user.firstName;
+      console.log("User" + this.user)
+    }
   }
 }

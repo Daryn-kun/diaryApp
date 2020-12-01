@@ -22,7 +22,10 @@
       <ng-template #elseBlock3><textarea class="form-control" id="txtform2" rows="20"
                                          name="entryContent" [value]="item.entryContents"></textarea></ng-template>
     </div>
+    <div class="buttons">
+    <button (click)='clearHandler()' type="reset" class="btn btn-danger" id="clearButton">Clear</button>
     <button (click)='saveButtonClick()' type="submit" class="btn btn-primary" id="saveButton">Save</button>
+    </div>
   </div>
 </div>
 

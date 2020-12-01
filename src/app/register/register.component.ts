@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SigningService} from "../service/signing.service";
 import {Users} from "../users";
 import {Router} from "@angular/router";
@@ -8,44 +8,50 @@ import {Router} from "@angular/router";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  userID: number = 0
-  firstname = ""
-  lastname = ""
-  email = ""
-  password = ""
+export class RegisterComponent implements OnInit{
+  User: any = [];
   passwordCon = ""
-  userList: Array<Users> = [];
-  userPass: any;
+  regEmail = true
+  didMatch = true
+  @Input() userDetails = {
+    firstName: "", lastName: "", email: "", password: ""
+  }
 
   constructor(private registerService: SigningService, private router : Router) {
   }
-  saveData(){
-
-  }
-
   onSubmit(value: any) {
     console.log(value)
-    if(this.password == this.passwordCon) {
-      this.registerService.isUserLoggedIn = true
-      // @ts-ignore
-      let userObj = new Users()
-      userObj.userID = this.userID
-      userObj.email = this.email
-      userObj.password = this.password
-      userObj.firstName = this.firstname
-      userObj.lastName = this.lastname
-      this.userList.push(userObj)
-      this.userPass = this.userList
-      this.registerService.usersList = this.userPass;
-      this.router.navigate(['/home', this.userID])
-      this.registerService.globalSavedId = this.userID
-      console.log("Passed id: "+this.registerService.globalSavedId)
-      this.userID++
+    if (this.checkEmail(this.userDetails.email)){
+      if(this.userDetails.password == this.passwordCon) {
+        this.registerService.isUserLoggedIn = true
+        this.registerService.registerUser(this.userDetails)
+          .subscribe((data: {}) => {
+            this.router.navigate(['/home', this.getLastId()])
+          })
+        this.registerService.globalSavedId = this.getLastId()
+        console.log("Passed id: "+this.registerService.globalSavedId)
+      }
+      else{
+        this.didMatch = false
+      }
+    } else {
+      this.regEmail = false
+    }
 
+  }
+  ngOnInit(): void {
+    this.registerService.getUsers()
+      .subscribe(data => this.User = data);
+  }
+  getLastId(){
+    return this.User[this.User.length - 1].id + 1;
+  }
+  checkEmail(email): boolean{
+    if (this.User.find(x => x.email === email)){
+      return false
+    }else {
+      return true
     }
-    else{
-      console.log("Password doesn't match")
-    }
+
   }
 }

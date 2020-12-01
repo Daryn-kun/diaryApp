@@ -11,7 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
+  User: any = [];
   email = ""
   password = ""
   logEmail = true;
@@ -22,13 +23,13 @@ export class LoginComponent{
 
   }
   onSubmit(value: any) {
-    this.user = this.loginService.getUser(this.email)
-    if (this.user !== undefined){
+    if (this.User.find(x => x.email === this.email)){
+      this.user = this.User.find(x => x.email === this.email)
       if (this.user.password == this.password){
         console.log(value)
         this.loginService.isUserLoggedIn = true
-        this.router.navigate(['/home', this.user.userID])
-        this.loginService.globalSavedId = this.user.userID
+        this.router.navigate(['/home', this.user.id])
+        this.loginService.globalSavedId = this.user.id
         console.log("Passed id: "+this.loginService.globalSavedId)
       } else {
         this.logPass=false
@@ -36,5 +37,9 @@ export class LoginComponent{
     } else{
       this.logEmail=false
     }
+  }
+  ngOnInit(): void {
+    this.loginService.getUsers()
+      .subscribe(data => this.User = data);
   }
 }

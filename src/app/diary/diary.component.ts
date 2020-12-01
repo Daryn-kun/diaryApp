@@ -15,11 +15,10 @@ import {SigningService} from "../service/signing.service";
   styleUrls: ['./diary.component.css']
 })
 export class DiaryComponent implements OnInit{
-  @Input() userFromParent: any
-  owner: string
-
+  @Input() ownerFromParent: string
+  constructor(private loginService: SigningService) {
+  }
   ngOnInit(): void {
-    this.owner = this.userFromParent.firstName
   }
 
 }

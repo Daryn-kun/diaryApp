@@ -18,9 +18,12 @@
   border: 0;
 }
 
-#saveButton {
+.buttons {
   float: right;
   margin-top: 20px;
+  margin-right: 20px;
+}
+#clearButton{
   margin-right: 20px;
 }
 

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {LoggingService} from "./logging.service";
 import {Users} from "../users";
+import {User} from "../user.model";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +11,37 @@ import {Users} from "../users";
 export class SigningService {
   public globalID: number;
   public reg = false;
-  // @ts-ignore
-  registeredUsers = [
-
-  ];
-
-  constructor(private loggingService: LoggingService) { }
+  apiUrl = 'http://localhost:3000';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  }
+  constructor(private loggingService: LoggingService, public _http: HttpClient) { }
+  getUsers(): Observable<User>{
+    return this._http.get<User>(this.apiUrl + '/users');
+  }
+  deleteUser(id){
+    return this._http.delete<User>(this.apiUrl + '/users/' + id);
+  }
+  registerUser(user){
+    return this._http.post<User>(this.apiUrl + '/users', JSON.stringify(user), this.httpOptions);
+  }
+  updateUser(id, user): Observable<User>{
+    return this._http.put<User>(this.apiUrl + '/users/' + id,
+      JSON.stringify(user), this.httpOptions);
+  }
+  getUserByID(id): Observable<User> {
+    return this._http.get<User>(this.apiUrl + '/users/' + id);
+  }
+  // user logged in
   get isUserLoggedIn(): boolean{
     return this.reg;
   }
   set isUserLoggedIn(val){
     this.reg = val;
   }
-  // Register getter and setter
+  // save registered user id
   get globalSavedId():number{
     this.loggingService.log('The registered id: ' + this.globalID);
     return this.globalID;
@@ -29,29 +50,4 @@ export class SigningService {
     this.globalID = val;
   }
 
-  get usersList(): string[]{
-    this.loggingService.log('List of users' + this.registeredUsers);
-    // @ts-ignore
-    return this.registeredUsers;
-  }
-  set usersList(val: string[]){
-    // @ts-ignore
-    this.registeredUsers = val;
-  }
-  getUser(email: string) {
-    return this.registeredUsers.find(x => x.email === email);
-  }
-  getUserByID(id: number) {
-    return this.registeredUsers.find(x => x.userID === id);
-  }
-  removeUser(deleteId: number): void
-  {
-    for (let users of this.registeredUsers) {
-      if (users.userID == deleteId) {
-        this.registeredUsers.splice(this.registeredUsers.indexOf(users), 1);
-        break;
-      }
-    }
-    console.log(this.registeredUsers);
-  };
 }

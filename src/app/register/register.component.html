@@ -4,29 +4,31 @@
     <div class="form-group">
       <div class="row">
         <div class="col">
-          <input type="text" #nameRef="ngModel" required class="form-control" placeholder="First name" name="firstname" [(ngModel)]="firstname">
+          <input type="text" #nameRef="ngModel" required class="form-control" placeholder="First name" name="firstname" [(ngModel)]="userDetails.firstName">
           <div [hidden]="nameRef.valid || nameRef.pristine" class="alert alert-danger">Please enter a name</div>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Last name" name="lastname" [(ngModel)]="lastname">
+          <input type="text" class="form-control" placeholder="Last name" name="lastname" [(ngModel)]="userDetails.lastName">
         </div>
       </div>
     </div>
     <div class="form-group">
       <input type="email" #emailRef="ngModel" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-             placeholder="Enter email" name="email" [(ngModel)]="email">
+             placeholder="Enter email" name="email" [(ngModel)]="userDetails.email">
       <div [hidden]="emailRef.valid || emailRef.pristine" class="alert alert-danger">Please enter an email</div>
+      <div *ngIf="!regEmail" class="alert alert-danger">Email already registered</div>
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <input type="password" #passwordRef="ngModel" required class="form-control" id="exampleInputPassword1" placeholder="Password"
-             name="password" [(ngModel)]="password">
+             name="password" [(ngModel)]="userDetails.password">
       <div [hidden]="passwordRef.valid || passwordRef.pristine" class="alert alert-danger">Create a password</div>
     </div>
     <div class="form-group">
       <input type="password" #passwordConRef="ngModel" required class="form-control" id="exampleInputPassword2" placeholder="Confirm Password"
              name="passwordCon" [(ngModel)]="passwordCon">
       <div [hidden]="passwordConRef.valid || passwordConRef.pristine" class="alert alert-danger">Confirmation of password is required</div>
+      <div *ngIf="!didMatch" class="alert alert-danger">Password doesn't match</div>
     </div>
     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create Account">
   </form>

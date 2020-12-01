@@ -1,7 +1,7 @@
 <div class="from shadow-lg mainDiv">
   <div class="elementsDiv" align="center">
-    <h3 *ngIf="owner === undefined; else elseBlock" style="position: relative; top: 20%">Someone's Diary</h3>
-    <ng-template #elseBlock><h3 style="position: relative; top: 20%">{{owner}}'s Diary</h3></ng-template>
+    <h3 *ngIf="ownerFromParent === undefined; else elseBlock" style="position: relative; top: 20%">Someone's Diary</h3>
+    <ng-template #elseBlock><h3 style="position: relative; top: 20%">{{ownerFromParent}}'s Diary</h3></ng-template>
     <div class="container">
       <div class="row border-top" style="height:80px">
         <div class="col border-right">
